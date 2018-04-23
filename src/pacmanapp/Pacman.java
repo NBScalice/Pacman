@@ -14,6 +14,11 @@ public class Pacman implements Sprite {
     protected int picIdx = 0;
     protected String [] arrPics = {"pacman1.png", "pacman2.png", "pacman3.png" };
     
+    public int getX(){ return x; }
+    public int getY(){ return y; }
+    public int getW(){ return 100; }
+    public int getH(){ return 100; }
+    
     public Pacman(int x, int y, int sx, int sy)
     {
         this.x = x; this.y = y; this.sx = sx; this.sy = sy;

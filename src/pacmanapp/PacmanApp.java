@@ -84,6 +84,7 @@ public class PacmanApp extends Application implements API{
                 Image ig = map.get(filename);
                 if(ig == null){
                 String path = "images/"+filename;
+                //String path = filename;
                 fis = new FileInputStream(path);
                 ig = new Image(fis);
             }

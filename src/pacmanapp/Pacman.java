@@ -12,7 +12,7 @@ package pacmanapp;
 public class Pacman implements Sprite {
     protected int x, y, sx, sy;
     protected int picIdx = 0;
-    protected String [] arrPics = {"temp1.png", "temp2.png", "temp3.png" };
+    protected String [] arrPics = {"pacman1.png", "pacman2.png", "pacman3.png" };
     
     public Pacman(int x, int y, int sx, int sy)
     {

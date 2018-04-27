@@ -72,7 +72,7 @@ public class GameEngine {
         this.playerPacman = man1;
     }
     
-    protected void collisionDetection(){ return;}
+    protected void collisionDetection(Sprite sprite1, Sprite sprite2){ return;}
     
     protected void updateAll(){ return;}
     

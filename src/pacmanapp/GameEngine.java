@@ -71,4 +71,14 @@ public class GameEngine {
         this.register(man2);
         this.playerPacman = man1;
     }
+    
+    protected void collisionDetection(){ return;}
+    
+    protected void updateAll(){ return;}
+    
+    protected void drawAll(){ return;}
+    
+    protected boolean isPointInRectangle(){ return true;}
+    
+    protected void handleCollision(Sprite sprite1, Sprite sprite2){ return;}
 }

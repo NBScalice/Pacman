@@ -101,9 +101,19 @@ public class GameEngine {
     
     }
     
-    protected void updateAll(){ return;}
+    protected void updateAll(){ 
+        for(Sprite s:arrSprites)
+        {
+            s.update();
+        }
+    }
     
-    protected void drawAll(){ return;}
+    protected void drawAll(){ 
+        for(Sprite s:arrSprites)
+        {
+            s.draw(api);
+        }
+    }
     
     protected boolean isPointInRectangle(int x, int y, int tx, int ty, int w, int h){ return true;}
     

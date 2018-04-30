@@ -16,6 +16,7 @@ public class GameEngine {
     protected Pacman playerPacman;
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected API api;
+    protected ArrayList<Sprite> toDel = new ArrayList<Sprite>();
 
     public GameEngine(API api) {
         this.api = api;
@@ -92,7 +93,7 @@ public class GameEngine {
                     b3 = isPointInRectangle(x1, y1 + h1, x2, y2, w2, h2);
                     b4 = isPointInRectangle(x1 + w1, y1 + h1, x2, y2, w2, h2);
                     if (b1 || b2 || b3 || b4) {
-                        handleCollision(sprite1, sprite2);
+                        handleCollision(sprite1, sprite2,toDel);
                     }
                 }
             }
@@ -121,20 +122,21 @@ public class GameEngine {
 
     }
 
-    protected void handleCollision(Sprite sprite1, Sprite sprite2) {
+    protected void handleCollision(Sprite sprite1, Sprite sprite2, ArrayList<Sprite> toDel) {
         if (sprite1 instanceof Pacman && sprite2 instanceof Pacman) {
             return;
-        }
-        //*****cHACK THIS .PLAYERPACMAN AND SPRITE2
-        else if (sprite1 instanceof Pacman && sprite2 instanceof Pacdot)
+        }//checking pacman pascman
+        
+        else if (sprite1 instanceof Pacman && !(sprite2 instanceof Pacman))
         {
             //add all the pacdot to to delete 
-            this.delete(sprite2);
-        }
-        else if (sprite1 instanceof Pacdot && sprite2 instanceof Pacman)
+            toDel.add(sprite2);
+        }//checking pacman packdot
+        else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman)
         {
-            this.delete(sprite1);
-        }
+         
+            toDel.add(sprite1);
+        }//checking pacdot pacman
         else 
             return;//coz two pacdots
 

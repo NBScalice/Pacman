@@ -14,8 +14,6 @@ import java.util.ArrayList;
 public class GameEngine {
 
     protected Pacman playerPacman;
-    //added code here 
-    protected Sprite Pacdot;
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected API api;
 
@@ -128,10 +126,17 @@ public class GameEngine {
             return;
         }
         //*****cHACK THIS .PLAYERPACMAN AND SPRITE2
-        if (sprite1 == this.playerPacman && sprite2 == this.Pacdot)
+        else if (sprite1 instanceof Pacman && sprite2 instanceof Pacdot)
         {
+            //add all the pacdot to to delete 
             this.delete(sprite2);
         }
+        else if (sprite1 instanceof Pacdot && sprite2 instanceof Pacman)
+        {
+            this.delete(sprite1);
+        }
+        else 
+            return;//coz two pacdots
 
     }//handle collision
 

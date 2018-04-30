@@ -21,6 +21,7 @@ public class Timer {
     public double stop()
     {
         long EndTime = System.currentTimeMillis();
+        int k = 0;
         return EndTime - StartTime;
     }
 }

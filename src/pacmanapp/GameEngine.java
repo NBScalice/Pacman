@@ -37,13 +37,13 @@ public class GameEngine {
                 this.playerPacman.setDirection(0,-1);
                 break;
             case DOWN:
-                this.playerPacman.setDirection(0,11);
+                this.playerPacman.setDirection(0,1);
                 break;
             case LEFT:
                 this.playerPacman.setDirection(-1,0);
                 break;
             case RIGHT:
-                this.playerPacman.setDirection(0,-1);
+                this.playerPacman.setDirection(1,0);
                 break;
             }
     }

@@ -20,25 +20,27 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 
 /**
  *
  * @author csc190
  */
-public class PacmanApp extends Application implements API{
+public class PacmanApp extends Application implements API {
+
     protected GraphicsContext gc;
     protected GameEngine ge;
-    protected Hashtable<String, Image> map = new Hashtable<String,Image>();
-    class MyThread extends Thread
-    {
+    protected Hashtable<String, Image> map = new Hashtable<String, Image>();
+
+    class MyThread extends Thread {
+
         @Override
-        public void run()
-        {
-            while(true)
-            { //MAKE SURE THIS IS RIGHT BECAUSE I DONT REMEMBER IF HE HAD THE TRY/CATCH DIFFERENT OR NOT.
+        public void run() {
+            while (true) { //MAKE SURE THIS IS RIGHT BECAUSE I DONT REMEMBER IF HE HAD THE TRY/CATCH DIFFERENT OR NOT.
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException ex) {
@@ -48,27 +50,45 @@ public class PacmanApp extends Application implements API{
             }
         }
     }
-    
+    Text text = new Text();
+
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Pacman");
         Group root = new Group();
-        Canvas canvas = new Canvas(1000,1000);
+        Canvas canvas = new Canvas(1000, 1000);
         this.gc = canvas.getGraphicsContext2D();
-        
+
         root.getChildren().add(canvas);
-        
-        primaryStage.setScene(new Scene(root));
+
+        Scene sc = new Scene(root);
+        primaryStage.setScene(sc);
         primaryStage.show();
-        
+
         this.ge = new GameEngine(this);
         this.ge.loadMap();
-        
+
+        sc.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                KeyCode code = event.getCode();
+                if (code == KeyCode.UP) {
+                    ge.handleKey(GameEngine.KEY.UP);
+                }else if (code == KeyCode.DOWN){
+                    ge.handleKey(GameEngine.KEY.DOWN);
+                }else if (code == KeyCode.LEFT){
+                    ge.handleKey(GameEngine.KEY.LEFT);
+                }else if (code == KeyCode.RIGHT){
+                    ge.handleKey(GameEngine.KEY.RIGHT);
+                }else {
+                    return;
+                }
+            }
+        });
+
         MyThread mt = new MyThread();
         mt.start();
     }
-    
-    
 
     /**
      * @param args the command line arguments
@@ -81,15 +101,17 @@ public class PacmanApp extends Application implements API{
     public void drawImg(String filename, int x, int y, int w, int h) {
         FileInputStream fis = null;
         try {
-                Image ig = map.get(filename);
-                if(ig == null){
-                String path = "images/"+filename;
+            Image ig = map.get(filename);
+            if (ig == null) {
+                String path = "images/" + filename;
                 //String path = filename;
                 fis = new FileInputStream(path);
                 ig = new Image(fis);
             }
-            this.gc.drawImage(ig,x,y,w,h);
-            if(fis!=null) fis.close();
+            this.gc.drawImage(ig, x, y, w, h);
+            if (fis != null) {
+                fis.close();
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -105,7 +127,7 @@ public class PacmanApp extends Application implements API{
 
     @Override
     public void clear() {
-        this.gc.clearRect(0,0,1000,1000);
+        this.gc.clearRect(0, 0, 1000, 1000);
     }
-    
+
 }

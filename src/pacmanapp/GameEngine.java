@@ -50,8 +50,10 @@ public class GameEngine {
     
     public void oneRound()
     {
+        
         Timer timer = new Timer();
         timer.start();
+        collisionDetection();
         api.clear();
         for(Sprite s: this.arrSprites)
         {

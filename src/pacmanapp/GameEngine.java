@@ -23,65 +23,65 @@ public class GameEngine {
     {
         this.arrSprites.add(s);
     }
-    
-    public void delete(Sprite s)
-    {
+
+    public void delete(Sprite s) {
         this.arrSprites.remove(s);
     }
-    
-    public enum KEY{UP, DOWN, LEFT, RIGHT};
-    
-    public void handleKey(KEY key)
-    {
-        switch(key){
+
+    public enum KEY {
+        UP, DOWN, LEFT, RIGHT
+    };
+
+    public void handleKey(KEY key) {
+        switch (key) {
             case UP:
-                this.playerPacman.setDirection(0,-1);
+                this.playerPacman.setDirection(0, -1);
                 break;
             case DOWN:
-                this.playerPacman.setDirection(0,1);
+                this.playerPacman.setDirection(0, 1);
                 break;
             case LEFT:
-                this.playerPacman.setDirection(-1,0);
+                this.playerPacman.setDirection(-1, 0);
                 break;
             case RIGHT:
-                this.playerPacman.setDirection(1,0);
+                this.playerPacman.setDirection(1, 0);
                 break;
-            }
+        }
     }
-    
-    public void oneRound()
+   
+    public void oneRound() 
     {
         
         Timer timer = new Timer();
         timer.start();
         collisionDetection();
         api.clear();
-        for(Sprite s: this.arrSprites)
+        for (Sprite s : this.arrSprites) 
         {
             s.update();
             s.draw(this.api);
         }
         double du = timer.stop();
-        System.out.println("Time taken: "+du+" milliseconds.");
+        System.out.println("Time taken: " + du + " milliseconds.");
     }
-    
-    public void loadMap()
+
+    public void loadMap() 
     {
-        Pacman man1 = new Pacman(100,100,1,0);
-        Pacman man2 = new Pacman(300,300,0,1);
-        
+        Pacman man1 = new Pacman(100, 100, 1, 0);
+        Pacman man2 = new Pacman(300, 300, 0, 1);
+
         this.register(man1);
         this.register(man2);
         this.playerPacman = man1;
     }
-    
-    protected void collisionDetection(){
-        for (int i = 0; i < arrSprites.size()-1;i++){
-            for (int j = 0; j < arrSprites.size()-1;j++){
+
+    protected void collisionDetection() {
+        for (int i = 0; i < arrSprites.size() - 1; i++) {
+            for (int j = 0; j < arrSprites.size() - 1; j++) {
                 Sprite sprite1 = arrSprites.get(i);
                 Sprite sprite2 = arrSprites.get(j);
-                if (sprite1!=sprite2){
-                    int x1,y1,w1,h1,x2,y2,w2,h2;
+                if (sprite1 != sprite2) {
+                    int x1, y1, w1, h1, x2, y2, w2, h2;
                     x1 = sprite1.getX();
                     y1 = sprite1.getY();
                     w1 = sprite1.getW();
@@ -102,27 +102,51 @@ public class GameEngine {
             }
         }
         
-        for(Sprite sp: toDel){
+        for (Sprite sp: toDel){
             this.delete(sp);
         }
-    
+        
     }
-    
-    protected void updateAll(){ 
-        for(Sprite s:arrSprites)
+
+    protected void updateAll() {
+        for (Sprite s : arrSprites) 
         {
             s.update();
         }
     }
-    
-    protected void drawAll(){ 
-        for(Sprite s:arrSprites)
+
+    protected void drawAll() {
+        for (Sprite s : arrSprites) 
         {
             s.draw(api);
         }
     }
     
-    protected boolean isPointInRectangle(int x, int y, int tx, int ty, int w, int h){ return true;}
+    protected boolean isPointInRectangle(int x, int y, int tx, int ty, int w, int h){ 
+        if (x > tx && x < (tx + w) && y > ty && y < (ty + h)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
-    protected void handleCollision(Sprite sprite1, Sprite sprite2, ArrayList<Sprite> toDel){ return;}
+    protected void handleCollision(Sprite sprite1, Sprite sprite2, ArrayList<Sprite> toDel){
+        if (sprite1 instanceof Pacman && sprite2 instanceof Pacman) {
+            return;
+        }//checking pacman pascman
+        
+        else if (sprite1 instanceof Pacman && !(sprite2 instanceof Pacman))
+        {
+            //add all the pacdot to to delete 
+            toDel.add(sprite2);
+        }//checking pacman packdot
+        else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman)
+        {
+         
+            toDel.add(sprite1);
+        }//checking pacdot pacman
+        else 
+            return;//coz two pacdots
+    }
+
 }

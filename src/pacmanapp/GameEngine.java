@@ -71,4 +71,41 @@ public class GameEngine {
         this.register(man2);
         this.playerPacman = man1;
     }
+    
+    protected void collisionDetection(){
+        for (int i = 0; i < arrSprites.size()-1;i++){
+            for (int j = 0; j < arrSprites.size()-1;j++){
+                Sprite sprite1 = arrSprites.get(i);
+                Sprite sprite2 = arrSprites.get(j);
+                if (sprite1!=sprite2){
+                    int x1,y1,w1,h1,x2,y2,w2,h2;
+                    x1 = sprite1.getX();
+                    y1 = sprite1.getY();
+                    w1 = sprite1.getW();
+                    h1 = sprite1.getH();
+                    x2 = sprite2.getX();
+                    y2 = sprite2.getY();
+                    w2 = sprite2.getW();
+                    h2 = sprite2.getH();
+                    boolean b1,b2,b3,b4;
+                    b1=isPointInRectangle(x1, y1, x2, y2, w2, h2);
+                    b2=isPointInRectangle(x1+w1, y1, x2, y2, w2, h2);
+                    b3=isPointInRectangle(x1, y1+h1, x2, y2, w2, h2);
+                    b4=isPointInRectangle(x1+w1, y1+h1, x2, y2, w2, h2);
+                    if (b1||b2||b3||b4){
+                        handleCollision(sprite1,sprite2);
+                    }
+                }
+            }
+        }
+    
+    }
+    
+    protected void updateAll(){ return;}
+    
+    protected void drawAll(){ return;}
+    
+    protected boolean isPointInRectangle(int x, int y, int tx, int ty, int w, int h){ return true;}
+    
+    protected void handleCollision(Sprite sprite1, Sprite sprite2){ return;}
 }

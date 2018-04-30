@@ -49,5 +49,5 @@ public class Pacman implements Sprite {
             this.picIdx = (picIdx+1)%this.arrPics.length;
         }
     }
-    
+
 }

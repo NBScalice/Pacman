@@ -138,7 +138,7 @@ public class GameEngine {
             toDel.add(sprite1);
         }//checking pacdot pacman
         else 
-            return;//coz two pacdots
+            return;//coz two pacdot
 
     }//handle collision
 

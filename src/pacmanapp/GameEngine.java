@@ -77,7 +77,7 @@ public class GameEngine {
 
     protected void collisionDetection() {
         for (int i = 0; i < arrSprites.size() - 1; i++) {
-            for (int j = 0; j < arrSprites.size() - 1; j++) {
+            for (int j = i+1; j < arrSprites.size() - 1; j++) {
                 Sprite sprite1 = arrSprites.get(i);
                 Sprite sprite2 = arrSprites.get(j);
                 if (sprite1 != sprite2) {

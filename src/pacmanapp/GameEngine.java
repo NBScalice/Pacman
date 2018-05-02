@@ -53,6 +53,11 @@ public class GameEngine {
         Timer timer = new Timer();
         timer.start();
         api.clear();
+        for(Sprite x: this.arrSprites)
+        {
+            
+        }
+        
         for(Sprite s: this.arrSprites)
         {
             s.update();
@@ -60,6 +65,8 @@ public class GameEngine {
         }
         double du = timer.stop();
         System.out.println("Time taken: "+du+" milliseconds.");
+        
+        
     }
     
     public void loadMap()

@@ -33,7 +33,8 @@ public class Pinky implements Sprite{
     
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.x+=sx;
+        this.y+=sy;
     }
 
     @Override
@@ -54,6 +55,37 @@ public class Pinky implements Sprite{
     @Override
     public int getH() {
         return 100;
+    }
+    
+    protected int decideDirection(int dx, int dy){
+        if (dx < 500 && dy < 500){  //NORTH-WEST
+            if (dx < dy){
+                return 2;   //West
+            }else {
+                return 1;   //North
+            }
+        }else if (dx > 500 && dy < 500){    //NORTH-EAST
+            if (dy < (1000-dx)){
+                return 1;   //North
+            } else {
+                return 0;   //East
+            }
+        }else if (dx < 500 && dy > 500){    //SOUTH-WEST
+            if (dx < (1000-dy)){
+                return 2;   //West
+            }
+            else {
+                return 3;   //South
+            }
+        }else if (dx > 500 && dy > 500){    //SOUTH-EAST
+            if (dx < dy){
+                return 0;   //East
+            }else {
+                return 3;   //South
+            }
+        }else{
+            return 0;
+        }
     }
     
 }

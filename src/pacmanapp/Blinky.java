@@ -33,7 +33,8 @@ public class Blinky implements Sprite{
     
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.x+=sx;
+        this.y+=sy;
     }
 
     @Override
@@ -54,6 +55,29 @@ public class Blinky implements Sprite{
     @Override
     public int getH() {
         return 100;
+    }
+    
+    protected int decideDirection(int dx, int dy){
+        int distanceX = this.x-dx;
+        int distanceY = this.y-dy;
+        if (distanceX==0 && distanceY==0){
+            return -1;
+        }else{
+            if (Math.abs(distanceX)>Math.abs(distanceY)){
+                if (distanceX > 0){
+                    return 0;   //East
+                }else{
+                    return 2;   //West
+                }
+            }else{
+                if (distanceY > 0){
+                    return 1;   //North
+                }else {
+                    return 3;   //South
+                }
+            }
+        }
+        
     }
     
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GameEngine {
 
     protected Pacman playerPacman;
-    protected pacdot dot; 
+    //protected pacdot dot; 
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected API api;
     protected ArrayList<Sprite> toDel = new ArrayList<Sprite>();
@@ -65,18 +65,17 @@ public class GameEngine {
     }
 
     public void loadMap() {
-        
-        pacdot dot1 = new pacdot(80,80);
-      //  pacdot dot1 = new pacdot(100,100);
+
+        pacdot dot1 = new pacdot(80, 80);
         this.register(dot1);
-        this.dot = dot1;
+
         Pacman man1 = new Pacman(100, 100, 1, 0);
         Pacman man2 = new Pacman(300, 300, 0, 1);
 
         this.register(man1);
         this.register(man2);
         this.playerPacman = man1;
-     
+
     }
 
     protected void collisionDetection() {
@@ -100,7 +99,7 @@ public class GameEngine {
                     b3 = isPointInRectangle(x1, y1 + h1, x2, y2, w2, h2);
                     b4 = isPointInRectangle(x1 + w1, y1 + h1, x2, y2, w2, h2);
                     if (b1 || b2 || b3 || b4) {
-                        handleCollision(sprite1, sprite2,toDel);
+                        handleCollision(sprite1, sprite2, toDel);
                     }
                 }
             }
@@ -133,20 +132,17 @@ public class GameEngine {
         if (sprite1 instanceof Pacman && sprite2 instanceof Pacman) {
             return;
         }//checking pacman pascman
-        
-        else if (sprite1 instanceof Pacman && !(sprite2 instanceof Pacman))
-        {
+        else if (sprite1 instanceof Pacman && !(sprite2 instanceof Pacman)) {
             //add all the pacdot to to delete 
             toDel.add(sprite2);
         }//checking pacman packdot
-        else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman)
-        {
-         
+        else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman) {
+
             toDel.add(sprite1);
         }//checking pacdot pacman
-        else 
+        else {
             return;//coz two pacdot
-
+        }
     }//handle collision
 
 }

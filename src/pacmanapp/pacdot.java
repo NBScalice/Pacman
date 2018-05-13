@@ -13,9 +13,9 @@ public class pacdot implements Sprite {
 
     protected int x, y;
     //protected int picIdxdot = 0;
-    protected String dotpic = "temp1.png";
+    protected String dotpic = "pacdot.png";
     //protected API dotapi;
-    //protected boolean visible = true;
+    protected boolean visible = true;
     //protected int score;
 
     @Override
@@ -51,16 +51,14 @@ public class pacdot implements Sprite {
     @Override
     public void draw(API api) {
         String pic = this.dotpic;
-        
-        api.drawImg(pic, x, y, 50, 50);
-        
-    }
 
-    
+        api.drawImg(pic, x, y, 50, 50);
+
+    }
 
     @Override
     public void update() {
         return;
-       
+
     }
 }

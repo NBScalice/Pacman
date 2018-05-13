@@ -36,6 +36,7 @@ public class Blinky implements Sprite {
 
     @Override
     public void update() {
+        counter++;
         this.x += sx;
         this.y += sy;
     }
@@ -68,14 +69,18 @@ public class Blinky implements Sprite {
         } else {
             if (Math.abs(distanceX) > Math.abs(distanceY)) {
                 if (distanceX > 0) {
+                    setDirection(1, 0);
                     return 0;   //East
                 } else {
+                    setDirection(-1, 0);
                     return 2;   //West
                 }
             } else {
                 if (distanceY > 0) {
+                    setDirection(0, -1);
                     return 1;   //North
                 } else {
+                    setDirection(0, 1);
                     return 3;   //South
                 }
             }

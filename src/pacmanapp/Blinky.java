@@ -23,6 +23,8 @@ public class Blinky implements Sprite {
     }
 
     public void setDirection(int sx, int sy) {
+        
+        
         this.sx = sx;
         this.sy = sy;
     }
@@ -36,6 +38,25 @@ public class Blinky implements Sprite {
 
     @Override
     public void update() {
+        //1. get the dx,dy of pacman
+        Pacman p1 = GameEngine.getInst().getPacman();
+        int dx = p1.getX();
+        int dy = p1.getY();
+        
+        //2. decide what is the right direction to go to pacman
+        /**
+         * Map map = Map.getInstance();
+         * int dir = map.decideDirection(this.x, this.y, dx, dy);
+        */
+        
+        //3. update the x,y coordinates
+        int [] arrSx = new int [] {1, 0, -1, 0};
+        int [] arrSy = new int [] {0, -1, 0, 1};
+        int dir = 0; //actually above
+        sx = arrSx[dir];
+        sy = arrSy[dir];
+        
+        
         counter++;
         this.x += sx;
         this.y += sy;
@@ -65,22 +86,22 @@ public class Blinky implements Sprite {
         int distanceX = this.x - dx;
         int distanceY = this.y - dy;
         if (distanceX == 0 && distanceY == 0) {
-            return -1;
+            return 0;
         } else {
             if (Math.abs(distanceX) > Math.abs(distanceY)) {
                 if (distanceX > 0) {
-                    setDirection(1, 0);
+                    //setDirection(1, 0);
                     return 0;   //East
                 } else {
-                    setDirection(-1, 0);
+                    //setDirection(-1, 0);
                     return 2;   //West
                 }
             } else {
                 if (distanceY > 0) {
-                    setDirection(0, -1);
+                    //setDirection(0, -1);
                     return 1;   //North
                 } else {
-                    setDirection(0, 1);
+                    //setDirection(0, 1);
                     return 3;   //South
                 }
             }

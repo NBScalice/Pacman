@@ -17,12 +17,18 @@ public class GameEngine {
     //protected pacdot dot; 
     protected Blinky blinky;
     protected Pinky pinky;
+    protected static GameEngine inst;
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected API api;
     protected ArrayList<Sprite> toDel = new ArrayList<Sprite>();
 
     public GameEngine(API api) {
         this.api = api;
+        inst = this;
+    }
+
+    public static GameEngine getInst() {
+        return inst;
     }
 
     public void register(Sprite s) {
@@ -31,6 +37,10 @@ public class GameEngine {
 
     public void delete(Sprite s) {
         this.arrSprites.remove(s);
+    }
+
+    public Pacman getPacman() {
+        return this.playerPacman;
     }
 
     public enum KEY {
@@ -79,13 +89,12 @@ public class GameEngine {
         this.register(man1);
         this.register(man2);
         this.playerPacman = man1;
-        
-        Blinky b = new Blinky(200,200,1,0);
+
+        Blinky b = new Blinky(200, 200, 1, 0);
         this.register(b);
         this.blinky = b;
-        
-        
-        Pinky p = new Pinky(200,300,1,0);
+
+        Pinky p = new Pinky(200, 300, 1, 0);
         this.register(p);
         this.pinky = p;
     }

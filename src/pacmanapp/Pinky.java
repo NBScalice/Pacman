@@ -64,38 +64,38 @@ public class Pinky implements Sprite {
     protected int decideDirection(int dx, int dy) {
         if (dx < 500 && dy < 500) {  //NORTH-WEST
             if (dx < dy) {
-                setDirection(-1, 0);
+                //setDirection(-1, 0);
                 return 2;   //West
             } else {
-                setDirection(0, -1);
+                //setDirection(0, -1);
                 return 1;   //North
             }
         } else if (dx > 500 && dy < 500) {    //NORTH-EAST
             if (dy < (1000 - dx)) {
-                setDirection(0, -1);
+                //setDirection(0, -1);
                 return 1;   //North
             } else {
-                setDirection(1, 0);
+                //setDirection(1, 0);
                 return 0;   //East
             }
         } else if (dx < 500 && dy > 500) {    //SOUTH-WEST
             if (dx < (1000 - dy)) {
-                setDirection(-1, 0);
+                //setDirection(-1, 0);
                 return 2;   //West
             } else {
-                setDirection(0, 1);
+                //setDirection(0, 1);
                 return 3;   //South
             }
         } else if (dx > 500 && dy > 500) {    //SOUTH-EAST
             if (dx < dy) {
-                setDirection(1, 0);
+                //setDirection(1, 0);
                 return 0;   //East
             } else {
-                setDirection(0, 1);
+                //setDirection(0, 1);
                 return 3;   //South
             }
         } else {
-            return 0;
+            return 1;
         }
     }
 

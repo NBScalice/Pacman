@@ -13,7 +13,7 @@ public class Blinky implements Sprite {
 
     protected int x, y, sx, sy;
     //protected int picIdx = 0;
-    protected String pic = "Blinky.png";
+    protected String pic = "blinky.png";
 
     public Blinky(int x, int y, int sx, int sy) {
         this.x = x;
@@ -29,7 +29,7 @@ public class Blinky implements Sprite {
 
     @Override
     public void draw(API api) {
-        api.drawImg(pic, x, y, 100, 100);
+        api.drawImg(pic, x, y, 50, 50);
     }
 
     private int counter = 0;
@@ -53,12 +53,12 @@ public class Blinky implements Sprite {
 
     @Override
     public int getW() {
-        return 100;
+        return 50;
     }
 
     @Override
     public int getH() {
-        return 100;
+        return 50;
     }
 
     protected int decideDirection(int dx, int dy) {

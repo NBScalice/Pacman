@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class GameEngine {
 
     protected Pacman playerPacman;
+    //protected pacdot dot; 
+    protected Blinky blinky;
+    protected Pinky pinky;
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected API api;
     protected ArrayList<Sprite> toDel = new ArrayList<Sprite>();
@@ -66,12 +69,25 @@ public class GameEngine {
     }
 
     public void loadMap() {
+
+        pacdot dot1 = new pacdot(80, 80);
+        this.register(dot1);
+
         Pacman man1 = new Pacman(100, 100, 1, 0);
         Pacman man2 = new Pacman(300, 300, 0, 1);
 
         this.register(man1);
         this.register(man2);
         this.playerPacman = man1;
+        
+        Blinky b = new Blinky(200,200,1,0);
+        this.register(b);
+        this.blinky = b;
+        
+        
+        Pinky p = new Pinky(200,300,1,0);
+        this.register(p);
+        this.pinky = p;
     }
 
     protected void collisionDetection() {

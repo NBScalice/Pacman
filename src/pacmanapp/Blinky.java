@@ -23,8 +23,7 @@ public class Blinky implements Sprite {
     }
 
     public void setDirection(int sx, int sy) {
-        
-        
+
         this.sx = sx;
         this.sy = sy;
     }
@@ -42,21 +41,19 @@ public class Blinky implements Sprite {
         Pacman p1 = GameEngine.getInst().getPacman();
         int dx = p1.getX();
         int dy = p1.getY();
-        
+
         //2. decide what is the right direction to go to pacman
         /**
-         * Map map = Map.getInstance();
-         * int dir = map.decideDirection(this.x, this.y, dx, dy);
-        */
-        
+         * Map map = Map.getInstance(); int dir = map.decideDirection(this.x,
+         * this.y, dx, dy);
+         */
         //3. update the x,y coordinates
-        int [] arrSx = new int [] {1, 0, -1, 0};
-        int [] arrSy = new int [] {0, -1, 0, 1};
+        int[] arrSx = new int[]{1, 0, -1, 0};
+        int[] arrSy = new int[]{0, -1, 0, 1};
         int dir = 0; //actually above
         sx = arrSx[dir];
         sy = arrSy[dir];
-        
-        
+
         counter++;
         this.x += sx;
         this.y += sy;

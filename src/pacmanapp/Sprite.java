@@ -23,5 +23,3 @@ public interface Sprite {
 
     public int getH();
 }
-
-

@@ -5,7 +5,14 @@
  */
 package pacmanapp;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.Spring.height;
+import static javax.swing.Spring.width;
 
 /**
  *
@@ -18,6 +25,12 @@ public class GameEngine {
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected API api;
     protected ArrayList<Sprite> toDel = new ArrayList<Sprite>();
+    protected char[][] map = null;
+    protected int rows = 0;
+    protected int cols = 0;
+    protected int xStart = 0;
+    protected int yStart = 0;
+    //private Object chooser;
 
     public GameEngine(API api) {
         this.api = api;
@@ -64,11 +77,54 @@ public class GameEngine {
         System.out.println("Time taken: " + du + " milliseconds.");
     }
 
-    public void loadMap() {
+    public void loadMap() throws IOException {
 
-        pacdot dot1 = new pacdot(80, 80);
-        this.register(dot1);
+        //1. choose a file from a dialog, currently it's hard coded
+        
+        String filepath = "map.txt";
+        //2. open and read the file
+        BufferedReader read = new BufferedReader(new FileReader(filepath));
+        String rea = read.readLine();
+        String[] split = rea.split(" ");
+        Integer width = Integer.valueOf(split[0]);
+        Integer height = Integer.valueOf(split[1]);
 
+        String readline;
+        
+        char[][] map1 = new char[height][width];
+        int row = 0;
+        try {
+            Sprite sp = null;
+            while ((readline = read.readLine()) != null) {
+                char[] arrCh = readline.toCharArray();
+                for (int i = 0; i < arrCh.length; i++) {
+                    map1[row][i] = arrCh[i];
+                    int x = 50 * i;
+                    int y = 50 * row;
+                    switch (arrCh[i]) {
+                        case '#':
+                            sp = new wall(x, y);
+                            this.register(sp);
+                            break;
+                        case 'P':
+                            sp = new Pacman(x, y, 1, 0);
+                            this.register(sp);
+                            break;
+                        case '.':
+                            sp = new pacdot(x, y);
+                            this.register(sp);
+                            break;
+
+                    }
+                }
+                
+                row++;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GameEngine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //pacdot dot1 = new pacdot(80, 80);
         Pacman man1 = new Pacman(100, 100, 1, 0);
         Pacman man2 = new Pacman(300, 300, 0, 1);
 

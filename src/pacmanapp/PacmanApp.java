@@ -53,7 +53,7 @@ public class PacmanApp extends Application implements API {
     Text text = new Text();
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Pacman");
         Group root = new Group();
         Canvas canvas = new Canvas(1000, 1000);
@@ -74,13 +74,13 @@ public class PacmanApp extends Application implements API {
                 KeyCode code = event.getCode();
                 if (code == KeyCode.UP) {
                     ge.handleKey(GameEngine.KEY.UP);
-                }else if (code == KeyCode.DOWN){
+                } else if (code == KeyCode.DOWN) {
                     ge.handleKey(GameEngine.KEY.DOWN);
-                }else if (code == KeyCode.LEFT){
+                } else if (code == KeyCode.LEFT) {
                     ge.handleKey(GameEngine.KEY.LEFT);
-                }else if (code == KeyCode.RIGHT){
+                } else if (code == KeyCode.RIGHT) {
                     ge.handleKey(GameEngine.KEY.RIGHT);
-                }else {
+                } else {
                     return;
                 }
             }

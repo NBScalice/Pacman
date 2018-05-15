@@ -11,11 +11,14 @@ package pacmanapp;
  */
 public class Map {
 
+    protected char[][] map;
+    protected int[] arrSx = new int[]{1, 0, -1, 0};
+    protected int[] arrSy = new int[]{0, -1, 0, 1}; //East,North,West,South
     protected static Map Instance;
     protected GameEngine ge;
 
-    public Map(GameEngine GE) {
-        this.ge = GE;
+    public Map(char[][] Map) {
+        this.map = Map;
         Instance = this;
     }
 
@@ -27,4 +30,16 @@ public class Map {
         return 0;
     }
 
+    public boolean isAvailableToGo(int x, int y, int dir){
+        int nx = x / 50;
+        int ny = y / 50;
+        int sx = arrSx[dir];
+        int sy = arrSy[dir];
+        int dx = sx + nx;
+        int dy = sy + ny;
+        /*if (map[dy][dx].equals("#")){
+            
+        }*/
+        return false;
+    }
 }

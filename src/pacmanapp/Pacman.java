@@ -24,11 +24,11 @@ public class Pacman implements Sprite {
     }
 
     public int getW() {
-        return 100;
+        return 50;
     }
 
     public int getH() {
-        return 100;
+        return 50;
     }
 
     public Pacman(int x, int y, int sx, int sy) {
@@ -46,7 +46,7 @@ public class Pacman implements Sprite {
     @Override
     public void draw(API api) {
         String pic = this.arrPics[this.picIdx];
-        api.drawImg(pic, x, y, 100, 100);
+        api.drawImg(pic, x, y, 50, 50);
     }
 
     private int counter = 0;

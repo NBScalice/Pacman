@@ -5,6 +5,9 @@
  */
 package pacmanapp;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author csc190
@@ -26,20 +29,24 @@ public class Map {
         return Instance;
     }
 
-    public int decideDirection(int sx, int sy, int dx, int dy) {
+    public int decideDirection(int x, int y, int dx, int dy) {
         return 0;
     }
 
-    public boolean isAvailableToGo(int x, int y, int dir){
+    public Set<Integer> getAvailablePath(int x, int y) {
+        Set<Integer> path = new HashSet<Integer>();
         int nx = x / 50;
         int ny = y / 50;
-        int sx = arrSx[dir];
-        int sy = arrSy[dir];
-        int dx = sx + nx;
-        int dy = sy + ny;
-        /*if (map[dy][dx].equals("#")){
-            
-        }*/
-        return false;
+        for (int dir = 0; dir < 3; dir++) {
+            int dx = arrSx[dir];
+            int dy = arrSy[dir];
+            int fx = nx + dx;
+            int fy = ny + dy;
+            if (fx >= 0 && fx < 100 && fy >= 0 && fy < 100 && map[fy][fx] != '#') {
+                path.add(dir);
+            }
+        }
+        return path;
     }
+
 }

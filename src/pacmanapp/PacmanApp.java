@@ -40,7 +40,7 @@ public class PacmanApp extends Application implements API {
 
         @Override
         public void run() {
-            while (true) { //MAKE SURE THIS IS RIGHT BECAUSE I DONT REMEMBER IF HE HAD THE TRY/CATCH DIFFERENT OR NOT.
+            while (true) { 
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException ex) {
@@ -53,12 +53,12 @@ public class PacmanApp extends Application implements API {
     Text text = new Text();
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Pacman");
         Group root = new Group();
         Canvas canvas = new Canvas(1000, 1000);
         this.gc = canvas.getGraphicsContext2D();
-
+        
         root.getChildren().add(canvas);
 
         Scene sc = new Scene(root);
@@ -74,13 +74,13 @@ public class PacmanApp extends Application implements API {
                 KeyCode code = event.getCode();
                 if (code == KeyCode.UP) {
                     ge.handleKey(GameEngine.KEY.UP);
-                }else if (code == KeyCode.DOWN){
+                } else if (code == KeyCode.DOWN) {
                     ge.handleKey(GameEngine.KEY.DOWN);
-                }else if (code == KeyCode.LEFT){
+                } else if (code == KeyCode.LEFT) {
                     ge.handleKey(GameEngine.KEY.LEFT);
-                }else if (code == KeyCode.RIGHT){
+                } else if (code == KeyCode.RIGHT) {
                     ge.handleKey(GameEngine.KEY.RIGHT);
-                }else {
+                } else {
                     return;
                 }
             }
@@ -107,6 +107,7 @@ public class PacmanApp extends Application implements API {
                 //String path = filename;
                 fis = new FileInputStream(path);
                 ig = new Image(fis);
+                map.put(filename, ig);
             }
             this.gc.drawImage(ig, x, y, w, h);
             if (fis != null) {
@@ -118,11 +119,14 @@ public class PacmanApp extends Application implements API {
             Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                fis.close();
+                if (fis != null) {
+                    fis.close();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
     }
 
     @Override

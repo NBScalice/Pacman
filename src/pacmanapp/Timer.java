@@ -10,16 +10,14 @@ package pacmanapp;
  * @author csc190
  */
 public class Timer {
-    
+
     protected long StartTime;
-    
-    public void start()
-    {
+
+    public void start() {
         StartTime = System.currentTimeMillis();
     }
-    
-    public double stop()
-    {
+
+    public double stop() {
         long EndTime = System.currentTimeMillis();
         int k = 0;
         return EndTime - StartTime;

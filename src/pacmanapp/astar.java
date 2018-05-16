@@ -19,6 +19,10 @@ public class astar
     public int ROWS, COLS; // size of map in array coords
 
     // constructor creates M, generates a random map
+    
+   /* public astar (char [][] map){
+        M = map;
+    }*/
     public astar(int r0, int c0)  // typically 32x44
     {
 	M = new int[r0][c0];

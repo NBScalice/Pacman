@@ -22,6 +22,7 @@ public class GameEngine {
 
     protected Pacman playerPacman;
     //protected pacdot dot; 
+    protected Inky inky;
     protected Blinky blinky;
     protected Pinky pinky;
     protected static GameEngine inst;
@@ -33,6 +34,7 @@ public class GameEngine {
     protected int cols = 0;
     protected int xStart = 0;
     protected int yStart = 0;
+    protected int score = 0;
     //private Object chooser;
 
     public GameEngine(API api) {
@@ -153,6 +155,10 @@ public class GameEngine {
         this.register(p);
         this.pinky = p;
         
+        Inky I = new Inky(200,100,1,0);
+        this.register(I);
+        this.inky = I;
+        
         Map map = new Map(map1);
     }
 
@@ -226,6 +232,7 @@ public class GameEngine {
         else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman) {
             if (sprite1 instanceof pacdot){
                 toDel.add(sprite1);
+                score++;
             }else if (sprite1 instanceof wall){
                 ((Pacman)sprite2).setDirection(0, 0);
             }else{
@@ -236,5 +243,8 @@ public class GameEngine {
             return;//coz two pacdots
         }
     }
+    
+    public int getScore() { return score; }
 
+    
 }

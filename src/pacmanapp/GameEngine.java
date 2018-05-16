@@ -22,9 +22,9 @@ public class GameEngine {
 
     protected Pacman playerPacman;
     //protected pacdot dot; 
+    protected Inky inky;
     protected Blinky blinky;
     protected Pinky pinky;
-    protected Inky inky;
     protected static GameEngine inst;
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected API api;

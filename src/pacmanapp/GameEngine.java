@@ -154,11 +154,11 @@ public class GameEngine {
         Pinky p = new Pinky(200, 300, 1, 0);
         this.register(p);
         this.pinky = p;
-        
-        Inky I = new Inky(200,100,1,0);
+
+        Inky I = new Inky(200, 100, 1, 0);
         this.register(I);
         this.inky = I;
-        
+
         Map map = new Map(map1);
     }
 
@@ -223,19 +223,19 @@ public class GameEngine {
             //add all the pacdot to to delete 
             if (sprite2 instanceof pacdot) {
                 toDel.add(sprite2);
-            }else if (sprite2 instanceof wall){
-                ((Pacman)sprite1).setDirection(0, 0);
-            }else{
+            } else if (sprite2 instanceof wall) {
+                ((Pacman) sprite1).setDirection(0, 0);
+            } else {
                 toDel.add(sprite1);
             }
         }//checking pacman packdot
         else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman) {
-            if (sprite1 instanceof pacdot){
+            if (sprite1 instanceof pacdot) {
                 toDel.add(sprite1);
                 score++;
-            }else if (sprite1 instanceof wall){
-                ((Pacman)sprite2).setDirection(0, 0);
-            }else{
+            } else if (sprite1 instanceof wall) {
+                ((Pacman) sprite2).setDirection(0, 0);
+            } else {
                 toDel.add(sprite2);
             }
         }//checking pacdot pacman
@@ -243,8 +243,9 @@ public class GameEngine {
             return;//coz two pacdots
         }
     }
-    
-    public int getScore() { return score; }
 
-    
+    public int getScore() {
+        return score;
+    }
+
 }

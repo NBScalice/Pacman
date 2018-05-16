@@ -88,29 +88,43 @@ public class Inky implements Sprite {
         if (distanceX == 0 && distanceY == 0) {
             return 0;
         } else {
-            
+
             Random random = new Random();
-            int num = random.nextInt(2)+1;
-            if(num == 1) flag = false;
+            int num = random.nextInt(2) + 1;
+            if (num == 1) {
+                flag = false;
+            }
             if (Math.abs(distanceX) > Math.abs(distanceY)) {
                 if (distanceX > 0) {
                     //setDirection(1, 0);
-                    if(flag) return 0;   //East
-                    else return 2;
+                    if (flag) {
+                        return 0;   //East
+                    } else {
+                        return 2;
+                    }
                 } else {
                     //setDirection(-1, 0);
-                    if(flag) return 2;   //West
-                    else return 0;
+                    if (flag) {
+                        return 2;   //West
+                    } else {
+                        return 0;
+                    }
                 }
             } else {
                 if (distanceY > 0) {
                     //setDirection(0, -1);
-                    if(flag) return 1;   //North
-                    else return 3;
+                    if (flag) {
+                        return 1;   //North
+                    } else {
+                        return 3;
+                    }
                 } else {
                     //setDirection(0, 1);
-                    if(flag) return 3;   //South
-                    else return 1;
+                    if (flag) {
+                        return 3;   //South
+                    } else {
+                        return 1;
+                    }
                 }
             }
         }

@@ -40,7 +40,7 @@ public class PacmanApp extends Application implements API {
 
         @Override
         public void run() {
-            while (true) { 
+            while (true) {
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException ex) {
@@ -58,7 +58,7 @@ public class PacmanApp extends Application implements API {
         Group root = new Group();
         Canvas canvas = new Canvas(1000, 1000);
         this.gc = canvas.getGraphicsContext2D();
-        
+
         root.getChildren().add(canvas);
 
         Scene sc = new Scene(root);
@@ -126,7 +126,7 @@ public class PacmanApp extends Application implements API {
                 Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }
 
     @Override

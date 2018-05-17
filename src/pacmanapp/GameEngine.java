@@ -36,6 +36,7 @@ public class GameEngine {
     protected int yStart = 0;
     protected int score = 0;
     //private Object chooser;
+    protected ScoreBoard scoreboard;
 
     public GameEngine(API api) {
         this.api = api;
@@ -158,6 +159,10 @@ public class GameEngine {
         Inky I = new Inky(200, 100, 1, 0);
         this.register(I);
         this.inky = I;
+
+        ScoreBoard sb = new ScoreBoard(this);
+        this.register(sb);
+        this.scoreboard = sb;
 
         Map map = new Map(map1);
     }

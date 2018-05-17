@@ -5,6 +5,7 @@
  */
 package pacmanapp;
 
+import static java.awt.SystemColor.text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 /**
@@ -47,19 +48,23 @@ public class PacmanApp extends Application implements API {
                     Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ge.oneRound();
+                gc.fillText("Score: "+ge.getScore(), 900, 900,100);
             }
         }
     }
-    Text text = new Text();
-
+    
+    
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Pacman");
         Group root = new Group();
         Canvas canvas = new Canvas(1000, 1000);
         this.gc = canvas.getGraphicsContext2D();
+        gc.setFont(new Font("default", 20));
         
         root.getChildren().add(canvas);
+        gc.fillText("Score: ", 900, 900,100);
 
         Scene sc = new Scene(root);
         primaryStage.setScene(sc);

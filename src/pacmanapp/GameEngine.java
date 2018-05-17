@@ -22,6 +22,7 @@ public class GameEngine {
 
     protected Pacman playerPacman;
     //protected pacdot dot; 
+    protected Clyde clyde;
     protected Inky inky;
     protected Blinky blinky;
     protected Pinky pinky;
@@ -151,6 +152,10 @@ public class GameEngine {
         Blinky b = new Blinky(200, 200, 1, 0);
         this.register(b);
         this.blinky = b;
+        
+        Clyde c = new Clyde(300, 300, 1, 0);
+        this.register(c);
+        this.clyde = c;
 
         Pinky p = new Pinky(200, 300, 1, 0);
         this.register(p);

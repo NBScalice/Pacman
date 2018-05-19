@@ -124,7 +124,7 @@ public class GameEngine {
                             this.register(sp);
                             break;
                         case 'P':
-                            sp = new Pacman(x, y, 1, 0);
+                            sp = new pacdot(x, y);
                             this.register(sp);
                             break;
                         case '.':
@@ -143,10 +143,10 @@ public class GameEngine {
 
         //pacdot dot1 = new pacdot(80, 80);
         Pacman man1 = new Pacman(100, 100, 1, 0);
-        Pacman man2 = new Pacman(300, 300, 0, 1);
+        //Pacman man2 = new Pacman(300, 300, 0, 1);
 
         this.register(man1);
-        this.register(man2);
+        //this.register(man2);
         this.playerPacman = man1;
 
         Blinky b = new Blinky(200, 200, 1, 0);
@@ -234,7 +234,7 @@ public class GameEngine {
             if (sprite2 instanceof pacdot) {
                 toDel.add(sprite2);
             } else if (sprite2 instanceof wall) {
-                ((Pacman) sprite1).setDirection(0, 0);
+                //((Pacman) sprite1).setDirection(0, 0);
             } else {
                 toDel.add(sprite1);
             }
@@ -244,7 +244,7 @@ public class GameEngine {
                 toDel.add(sprite1);
                 score++;
             } else if (sprite1 instanceof wall) {
-                ((Pacman) sprite2).setDirection(0, 0);
+               // ((Pacman) sprite2).setDirection(0, 0);
             } else {
                 toDel.add(sprite2);
             }

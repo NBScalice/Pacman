@@ -6,6 +6,7 @@
 package pacmanapp;
 
 import java.util.HashSet;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
@@ -18,8 +19,8 @@ public class Map {
     protected int[] arrSx = new int[]{1, 0, -1, 0};
     protected int[] arrSy = new int[]{0, -1, 0, 1}; //East,North,West,South
     protected static Map Instance;
-    boolean [][] wasHere = new boolean [100][100];
-    boolean [][] correctPath = new boolean [100][100];    
+    boolean[][] wasHere = new boolean[1000][1000];
+    //boolean[][] correctPath = new boolean[100][100];
     protected GameEngine ge;
     int startX, startY;
     int endX, endY;
@@ -34,17 +35,10 @@ public class Map {
     }
 
     public int decideDirection(int x, int y, int dx, int dy) {
-        return 0;
-    }
-    
-    public void solveMap(){
-        for (int row = 0; row < 99; row++){
-            for (int col = 0; col < 99; col++){
-                wasHere[col][row] = false;
-                correctPath[col][row] = false;
-            }
-        }
-        boolean b = recursiveSolve(startX,startY);
+        PriorityQueue<Integer> path = new PriorityQueue<Integer>();
+        getAvailablePath(x, y, dx, dy, path);
+        int firstDir = path.peek();
+        return firstDir;
     }
 
     public Set<Integer> getAvailableDirection(int x, int y) {   //return a possible direction given a coordinate
@@ -63,18 +57,37 @@ public class Map {
         return Dir;
     }
 
-    public void getAvailablePath(int x, int y, int dx, int dy, Set<Integer> path){
+    public void getAvailablePath(int x, int y, int dx, int dy, PriorityQueue<Integer> path) { // get a set of direction from map[y][x] to map[dy][dx]
+        wasHere[y][x] = true;
         Set<Integer> Dir = getAvailableDirection(x, y);
-        for (int dir: Dir){
-            int nx = (x/50) + arrSx[dir];
-            int ny = (y/50) + arrSy[dir];
-            int ax = nx *50;
+        for (int dir : Dir) {
+            int nx = (x / 50) + arrSx[dir];
+            int ny = (y / 50) + arrSy[dir];
+            int ax = nx * 50;
             int ay = ny * 50;
             path.add(dir);
-            if (ax!=dx && ay != dy){
-                getAvailablePath(ax,ay,dx,dy,path);
-            }else return;
+            if (ax != dx && ay != dy && wasHere[ay][ax]!=true) {
+                getAvailablePath(ax, ay, dx, dy, path);
+            } else {
+                return;
+            }
         }
+    }
+
+    public PriorityQueue<Integer> getPath(int x, int y, int dx, int dy){
+        PriorityQueue<Integer> path = new PriorityQueue<Integer>();
+        getAvailablePath(x, y, dx, dy, path);
+        return path;
+    }
+    /*
+    public void solveMap(){
+        for (int row = 0; row < 99; row++){
+            for (int col = 0; col < 99; col++){
+                wasHere[col][row] = false;
+                correctPath[col][row] = false;
+            }
+        }
+        boolean b = recursiveSolve(startX,startY);
     }
     
     public boolean recursiveSolve(int x, int y) {
@@ -104,5 +117,5 @@ public class Map {
         }
     return false;
     }
-
+     */
 }

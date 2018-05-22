@@ -37,6 +37,9 @@ public class Map {
     public int decideDirection(int x, int y, int dx, int dy) {
         PriorityQueue<Integer> path = new PriorityQueue<Integer>();
         getAvailablePath(x, y, dx, dy, path);
+        if (path == null || path.size() == 0) {
+            int bp = 1;
+        }
         int firstDir = path.peek();
         return firstDir;
     }
@@ -58,6 +61,7 @@ public class Map {
     }
 
     public void getAvailablePath(int x, int y, int dx, int dy, PriorityQueue<Integer> path) { // get a set of direction from map[y][x] to map[dy][dx]
+        
         wasHere[y][x] = true;
         Set<Integer> Dir = getAvailableDirection(x, y);
         for (int dir : Dir) {
@@ -66,7 +70,7 @@ public class Map {
             int ax = nx * 50;
             int ay = ny * 50;
             path.add(dir);
-            if (ax != dx && ay != dy && wasHere[ay][ax]!=true) {
+            if (ax != dx && ay != dy && wasHere[ay][ax] != true) {
                 getAvailablePath(ax, ay, dx, dy, path);
             } else {
                 return;
@@ -74,48 +78,61 @@ public class Map {
         }
     }
 
-    public PriorityQueue<Integer> getPath(int x, int y, int dx, int dy){
+    public PriorityQueue<Integer> getPath(int x, int y, int dx, int dy) {
         PriorityQueue<Integer> path = new PriorityQueue<Integer>();
         getAvailablePath(x, y, dx, dy, path);
         return path;
     }
+
     /*
-    public void solveMap(){
-        for (int row = 0; row < 99; row++){
-            for (int col = 0; col < 99; col++){
+    public void solveMap() {
+        for (int row = 0; row < 99; row++) {
+            for (int col = 0; col < 99; col++) {
                 wasHere[col][row] = false;
                 correctPath[col][row] = false;
             }
         }
-        boolean b = recursiveSolve(startX,startY);
+        boolean b = recursiveSolve(startX, startY);
     }
-    
+
     public boolean recursiveSolve(int x, int y) {
-        if (x == endX && y == endY) return true; // If you reached the end
-    if (map[y][x] == '#' || wasHere[x][y]) return false;  
-    // If you are on a wall or already were here
-    wasHere[x][y] = true;
-    if (x != 0) // Checks if not on left edge
-        if (recursiveSolve(x-1, y)) { // Recalls method one to the left
-            correctPath[y][x] = true; // Sets that path value to true;
-            return true;
+        if (x == endX && y == endY) {
+            return true; // If you reached the end
         }
-    if (x != 99) // Checks if not on right edge
-        if (recursiveSolve(x+1, y)) { // Recalls method one to the right
-            correctPath[y][x] = true;
-            return true;
+        if (map[y][x] == '#' || wasHere[x][y]) {
+            return false;
         }
-    if (y != 0)  // Checks if not on top edge
-        if (recursiveSolve(x, y-1)) { // Recalls method one up
-            correctPath[y][x] = true;
-            return true;
+        // If you are on a wall or already were here
+        wasHere[x][y] = true;
+        if (x != 0) // Checks if not on left edge
+        {
+            if (recursiveSolve(x - 1, y)) { // Recalls method one to the left
+                correctPath[y][x] = true; // Sets that path value to true;
+                return true;
+            }
         }
-    if (y != 99) // Checks if not on bottom edge
-        if (recursiveSolve(x, y+1)) { // Recalls method one down
-            correctPath[y][x] = true;
-            return true;
+        if (x != 99) // Checks if not on right edge
+        {
+            if (recursiveSolve(x + 1, y)) { // Recalls method one to the right
+                correctPath[y][x] = true;
+                return true;
+            }
         }
-    return false;
-    }
-     */
+        if (y != 0) // Checks if not on top edge
+        {
+            if (recursiveSolve(x, y - 1)) { // Recalls method one up
+                correctPath[y][x] = true;
+                return true;
+            }
+        }
+        if (y != 99) // Checks if not on bottom edge
+        {
+            if (recursiveSolve(x, y + 1)) { // Recalls method one down
+                correctPath[y][x] = true;
+                return true;
+            }
+        }
+        return false;
+    }*/
+
 }

@@ -9,7 +9,7 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class Pacman implements Sprite {
+public class Pacman implements movingSprites {
 
     protected int x, y, sx, sy;
     protected int picIdx = 0;
@@ -24,11 +24,11 @@ public class Pacman implements Sprite {
     }
 
     public int getW() {
-        return 50;
+        return 40;
     }
 
     public int getH() {
-        return 50;
+        return 40;
     }
 
     public Pacman(int x, int y, int sx, int sy) {
@@ -46,7 +46,7 @@ public class Pacman implements Sprite {
     @Override
     public void draw(API api) {
         String pic = this.arrPics[this.picIdx];
-        api.drawImg(pic, x, y, 50, 50);
+        api.drawImg(pic, x, y, 40, 40);
     }
 
     private int counter = 0;
@@ -60,6 +60,11 @@ public class Pacman implements Sprite {
         if (counter % 25 == 0) {
             this.picIdx = (picIdx + 1) % this.arrPics.length;
         }
+    }
+
+    @Override
+    public int decideDirection(int x, int y) {
+        return 0;
     }
 
 }

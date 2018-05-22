@@ -59,6 +59,6 @@ public class pacdot implements Sprite {
     @Override
     public void update() {
         return;
-
     }
+
 }

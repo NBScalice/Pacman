@@ -142,7 +142,7 @@ public class GameEngine {
         }
 
         //pacdot dot1 = new pacdot(80, 80);
-        Pacman man1 = new Pacman(100, 100, 1, 0);
+        Pacman man1 = new Pacman(150, 100, 1, 0);
         //Pacman man2 = new Pacman(300, 300, 0, 1);
 
         this.register(man1);
@@ -226,27 +226,85 @@ public class GameEngine {
     }
 
     protected void handleCollision(Sprite sprite1, Sprite sprite2, ArrayList<Sprite> toDel) {
-        if (sprite1 instanceof Pacman && sprite2 instanceof Pacman) {
-            return;
-        }//checking pacman pascman
-        else if (sprite1 instanceof Pacman && !(sprite2 instanceof Pacman)) {
-            //add all the pacdot to to delete 
-            if (sprite2 instanceof pacdot) {
-                toDel.add(sprite2);
-            } else if (sprite2 instanceof wall) {
-                //((Pacman) sprite1).setDirection(0, 0);
-            } else {
+        if (sprite1 instanceof movingSprites && sprite2 instanceof movingSprites) {
+            if (sprite1 instanceof Pacman && !(sprite2 instanceof Pacman)){
                 toDel.add(sprite1);
+            }else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman){
+                toDel.add(sprite2);
+            }else return;
+        }//pacman with ghosts
+        
+        else if (sprite1 instanceof movingSprites && !(sprite2 instanceof movingSprites)) {
+            //add all the pacdot to to delete 
+            if (sprite2 instanceof pacdot){
+                if (sprite1 instanceof Pacman){
+                    toDel.add(sprite2);
+                }else return;
+            }else {//sprite2 is wall
+                int gapX = sprite1.getX()-sprite2.getX();
+                int gapY = sprite1.getY()-sprite2.getY();
+                if (sprite1 instanceof Pacman){
+                    int x = ((Pacman)sprite1).x;
+                    int y = ((Pacman)sprite1).y;
+                    ((Pacman)sprite1).x = Math.round(x/50)*40+gapX;
+                    ((Pacman)sprite1).y = Math.round(y/50)*40+gapY;
+                }else if (sprite1 instanceof Blinky){
+                    int x = ((Blinky)sprite1).x;
+                    int y = ((Blinky)sprite1).y;
+                    ((Blinky)sprite1).x = Math.round(x/50)*40+gapX;
+                    ((Blinky)sprite1).y = Math.round(y/50)*40+gapY;
+                }else if (sprite1 instanceof Pinky){
+                    int x = ((Pinky)sprite1).x;
+                    int y = ((Pinky)sprite1).y;
+                    ((Pinky)sprite1).x = Math.round(x/50)*40+gapX;
+                    ((Pinky)sprite1).y = Math.round(y/50)*40+gapY;
+                }else if (sprite1 instanceof Inky){
+                    int x = ((Inky)sprite1).x;
+                    int y = ((Inky)sprite1).y;
+                    ((Inky)sprite1).x = Math.round(x/50)*40+gapX;
+                    ((Inky)sprite1).y = Math.round(y/50)*40+gapY;
+                }else {
+                    int x = ((Clyde)sprite1).x;
+                    int y = ((Clyde)sprite1).y;
+                    ((Clyde)sprite1).x = Math.round(x/50)*40+gapX;
+                    ((Clyde)sprite1).y = Math.round(y/50)*40+gapY;
+                }
             }
         }//checking pacman packdot
-        else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman) {
-            if (sprite1 instanceof pacdot) {
-                toDel.add(sprite1);
-                score++;
-            } else if (sprite1 instanceof wall) {
-               // ((Pacman) sprite2).setDirection(0, 0);
-            } else {
-                toDel.add(sprite2);
+        else if (!(sprite1 instanceof movingSprites) && sprite2 instanceof movingSprites) {
+            if (sprite1 instanceof pacdot){
+                if (sprite2 instanceof Pacman){
+                    toDel.add(sprite1);
+                }else return;
+            }else {//sprite1 is wall
+                int gapX = sprite2.getX()-sprite1.getX();
+                int gapY = sprite2.getY()-sprite1.getY();
+                if (sprite2 instanceof Pacman){
+                    int x = ((Pacman)sprite2).x;
+                    int y = ((Pacman)sprite2).y;
+                    ((Pacman)sprite2).x = Math.round(x/50)*40+gapX;
+                    ((Pacman)sprite2).y = Math.round(y/50)*40+gapY;
+                }else if (sprite2 instanceof Blinky){
+                    int x = ((Blinky)sprite2).x;
+                    int y = ((Blinky)sprite2).y;
+                    ((Blinky)sprite2).x = Math.round(x/50)*40+gapX;
+                    ((Blinky)sprite2).y = Math.round(y/50)*40+gapY;
+                }else if (sprite2 instanceof Pinky){
+                    int x = ((Pinky)sprite2).x;
+                    int y = ((Pinky)sprite2).y;
+                    ((Pinky)sprite2).x = Math.round(x/50)*40+gapX;
+                    ((Pinky)sprite2).y = Math.round(y/50)*40+gapY;
+                }else if (sprite2 instanceof Inky){
+                    int x = ((Inky)sprite2).x;
+                    int y = ((Inky)sprite2).y;
+                    ((Inky)sprite2).x = Math.round(x/50)*40+gapX;
+                    ((Inky)sprite2).y = Math.round(y/50)*40+gapY;
+                }else {
+                    int x = ((Clyde)sprite2).x;
+                    int y = ((Clyde)sprite2).y;
+                    ((Clyde)sprite2).x = Math.round(x/50)*40+gapX;
+                    ((Clyde)sprite2).y = Math.round(y/50)*40+gapY;
+                }
             }
         }//checking pacdot pacman
         else {

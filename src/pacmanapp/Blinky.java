@@ -9,7 +9,7 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class Blinky implements Sprite {
+public class Blinky implements movingSprites {
 
     protected int x, y, sx, sy;
     //protected int picIdx = 0;
@@ -30,7 +30,7 @@ public class Blinky implements Sprite {
 
     @Override
     public void draw(API api) {
-        api.drawImg(pic, x, y, 50, 50);
+        api.drawImg(pic, x, y, 40, 40);
     }
 
     private int counter = 0;
@@ -71,15 +71,15 @@ public class Blinky implements Sprite {
 
     @Override
     public int getW() {
-        return 50;
+        return 40;
     }
 
     @Override
     public int getH() {
-        return 50;
+        return 40;
     }
 
-    protected int decideDirection(int dx, int dy) {
+    public int decideDirection(int dx, int dy) {
         int distanceX = this.x - dx;
         int distanceY = this.y - dy;
         if (distanceX == 0 && distanceY == 0) {

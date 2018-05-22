@@ -9,7 +9,7 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class Pinky implements Sprite {
+public class Pinky implements movingSprites {
 
     protected int x, y, sx, sy;
     //protected int picIdx = 0;
@@ -29,7 +29,7 @@ public class Pinky implements Sprite {
 
     @Override
     public void draw(API api) {
-        api.drawImg(pic, x, y, 50, 50);
+        api.drawImg(pic, x, y, 40, 40);
     }
 
     private int counter = 0;
@@ -53,15 +53,15 @@ public class Pinky implements Sprite {
 
     @Override
     public int getW() {
-        return 50;
+        return 40;
     }
 
     @Override
     public int getH() {
-        return 50;
+        return 40;
     }
 
-    protected int decideDirection(int dx, int dy) {
+    public int decideDirection(int dx, int dy) {
         if (dx < 500 && dy < 500) {  //NORTH-WEST
             if (dx < dy) {
                 //setDirection(-1, 0);

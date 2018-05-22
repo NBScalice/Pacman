@@ -30,7 +30,7 @@ public class Clyde implements Sprite {
     
     @Override
     public void draw(API api) {
-        api.drawImg(pic, x, y, 50, 50);
+        api.drawImg(pic, x, y, 40, 40);
     }
     
     private int counter = 0;
@@ -79,12 +79,12 @@ public class Clyde implements Sprite {
 
     @Override
     public int getW() {
-        return 50;
+        return 40;
     }
 
     @Override
     public int getH() {
-        return 50;
+        return 40;
     }
     
     protected int decideDirection(int dx, int dy) {

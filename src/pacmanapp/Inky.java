@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author csc190
  */
-public class Inky implements Sprite {
+public class Inky implements movingSprites {
 
     protected int x, y, sx, sy, c, dir;
     //protected int picIdx = 0;
@@ -33,7 +33,7 @@ public class Inky implements Sprite {
 
     @Override
     public void draw(API api) {
-        api.drawImg(pic, x, y, 50, 50);
+        api.drawImg(pic, x, y, 40, 40);
     }
 
     private int counter = 0;
@@ -62,6 +62,8 @@ public class Inky implements Sprite {
         counter++;
         this.x += sx;
         this.y += sy;
+          this.x %= 600;
+        this.y %= 600;
     }
 
     @Override
@@ -76,15 +78,15 @@ public class Inky implements Sprite {
 
     @Override
     public int getW() {
-        return 50;
+        return 40;
     }
 
     @Override
     public int getH() {
-        return 50;
+        return 40;
     }
 
-    protected int decideDirection(int dx, int dy) {
+    public int decideDirection(int dx, int dy) {
         int distanceX = this.x - dx;
         int distanceY = this.y - dy;
         boolean flag = true;

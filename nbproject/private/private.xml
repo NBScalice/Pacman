@@ -5,6 +5,7 @@
         <group>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/home/csc190/Desktop/PACMAN_GIT_COPY/Pacman/src/pacmanapp/API.java</file>
             <file>file:/home/csc190/Desktop/PACMAN_GIT_COPY/Pacman/src/pacmanapp/PacmanApp.java</file>
             <file>file:/home/csc190/Desktop/PACMAN_GIT_COPY/Pacman/src/pacmanapp/ScoreBoard.java</file>
@@ -17,20 +18,16 @@
 <<<<<<< HEAD
             <file>file:/home/csc190/Desktop/PACMAN_GIT_COPY/Pacman/src/pacmanapp/GameEngine.java</file>
 =======
+=======
+>>>>>>> origin/Elvis
             <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Map.java</file>
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/API.java</file>
             <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/PacmanApp.java</file>
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Blinky.java</file>
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Timer.java</file>
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Wall.java</file>
->>>>>>> origin/Nick
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/GameEngine.java</file>
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/wall.java</file>
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/PacmanApp.java</file>
-            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Sprite.java</file>
-<<<<<<< HEAD
             <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Pacman.java</file>
+            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/movingSprites.java</file>
+            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Pinky.java</file>
+            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Inky.java</file>
             <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Blinky.java</file>
+<<<<<<< HEAD
             <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Map.java</file>
 =======
             <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/pacdot.java</file>
@@ -45,6 +42,10 @@
             <file>file:/home/csc190/Desktop/PacmanApp/src/pacmanapp/Timer.java</file>
             <file>file:/home/csc190/Desktop/PacmanApp/src/pacmanapp/GameEngine.java</file>
 >>>>>>> origin
+=======
+            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/Clyde.java</file>
+            <file>file:/home/csc190/Desktop/ELVIS_GIT_COPY_PACMAN/Pacman/src/pacmanapp/GameEngine.java</file>
+>>>>>>> origin/Elvis
         </group>
     </open-files>
 </project-private>

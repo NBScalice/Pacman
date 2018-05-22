@@ -25,7 +25,6 @@ public class wall implements Sprite {
         api.drawImg(wallpic, x, y, 50, 50);
     }
 
-    @Override
     public void update() {
         return;
     }

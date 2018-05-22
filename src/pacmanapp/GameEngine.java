@@ -87,13 +87,25 @@ public class GameEngine {
         timer.start();
         collisionDetection();
         api.clear();
-        for (Sprite s : this.arrSprites) {
+
+        for(Sprite x: this.arrSprites)
+        {
+            
+        }
+        
+        for(Sprite s: this.arrSprites)
+        {
+
             s.update();
             s.draw(this.api);
         }
         api.updateScore(score);
         double du = timer.stop();
-        System.out.println("Time taken: " + du + " milliseconds.");
+
+        System.out.println("Time taken: "+du+" milliseconds.");
+        
+        
+
     }
 
     public void loadMap() throws IOException {

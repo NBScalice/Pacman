@@ -36,9 +36,12 @@ public class Pinky implements movingSprites {
 
     @Override
     public void update() {
+        
         counter++;
         this.x += sx;
         this.y += sy;
+          this.x %= 600;
+        this.y %= 600;
     }
 
     @Override
@@ -62,37 +65,46 @@ public class Pinky implements movingSprites {
     }
 
     public int decideDirection(int dx, int dy) {
-        if (dx < 500 && dy < 500) {  //NORTH-WEST
+        Map map = Map.getInstance(); 
+        if (dx < 300 && dy < 300) {  //NORTH-WEST
             if (dx < dy) {
+                int dir = map.decideDirection(x, y, dx, 0);
                 //setDirection(-1, 0);
-                return 2;   //West
+                return dir;   //West
             } else {
+                int dir = map.decideDirection(x, y, 0, dy);
                 //setDirection(0, -1);
-                return 1;   //North
+                return dir;   //North
             }
-        } else if (dx > 500 && dy < 500) {    //NORTH-EAST
-            if (dy < (1000 - dx)) {
+        } else if (dx > 300 && dy < 300) {    //NORTH-EAST
+            if (dy < (600 - dx)) {
+                int dir = map.decideDirection(x, y, 0, dy);
                 //setDirection(0, -1);
-                return 1;   //North
+                return dir;   //North
             } else {
+                int dir = map.decideDirection(x, y, 600, dy);
                 //setDirection(1, 0);
-                return 0;   //East
+                return dir;   //East
             }
-        } else if (dx < 500 && dy > 500) {    //SOUTH-WEST
-            if (dx < (1000 - dy)) {
+        } else if (dx < 300 && dy > 300) {    //SOUTH-WEST
+            if (dx < (600 - dy)) {
+                int dir = map.decideDirection(x, y, 0, dy);
                 //setDirection(-1, 0);
-                return 2;   //West
+                return dir;   //West
             } else {
+                int dir = map.decideDirection(x, y, dx, 600);
                 //setDirection(0, 1);
-                return 3;   //South
+                return dir;   //South
             }
-        } else if (dx > 500 && dy > 500) {    //SOUTH-EAST
+        } else if (dx > 300 && dy > 300) {    //SOUTH-EAST
             if (dx < dy) {
+                int dir = map.decideDirection(x, y, 600, dy);
                 //setDirection(1, 0);
-                return 0;   //East
+                return dir;   //East
             } else {
+                int dir = map.decideDirection(x, y, dx, 600);
                 //setDirection(0, 1);
-                return 3;   //South
+                return dir;   //South
             }
         } else {
             return 1;

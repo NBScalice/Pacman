@@ -5,6 +5,7 @@
  */
 package pacmanapp;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
@@ -36,13 +37,13 @@ public class Map {
 
     public int decideDirection(int x, int y, int dx, int dy) {
         reset();
-        PriorityQueue<Integer> path = new PriorityQueue<Integer>();
-        getAvailablePath(x, y, dx, dy, path);
-        if (path == null || path.size() == 0) {
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        boolean result = getAvailablePath(x, y, dx, dy, path);
+        if (!result) {
             int bp = 1;
             return -1;
         } else {
-            int firstDir = path.peek();
+            int firstDir = path.get(0);
             return firstDir;
         }
     }
@@ -51,7 +52,7 @@ public class Map {
         Set<Integer> Dir = new HashSet<Integer>();
         int nx = x / 50;
         int ny = y / 50;
-        for (int dir = 0; dir < 3; dir++) {
+        for (int dir = 0; dir < 4; dir++) {
             int dx = arrSx[dir];
             int dy = arrSy[dir];
             int fx = nx + dx;
@@ -71,7 +72,7 @@ public class Map {
         }
     }
 
-    public void getAvailablePath(int x, int y, int dx, int dy, PriorityQueue<Integer> path) { // get a set of direction from map[y][x] to map[dy][dx]
+    public boolean getAvailablePath(int x, int y, int dx, int dy, ArrayList<Integer> path) { // get a set of direction from map[y][x] to map[dy][dx]
         
         x = x/50;
         y = y/50;
@@ -87,15 +88,20 @@ public class Map {
             int ay = ny;
             path.add(dir);
             if (ax != dx && ay != dy && wasHere[ay][ax] != true) {
-                getAvailablePath(ax*50, ay*50, dx*50, dy*50, path);
-            } else {
-                return;
-            }
+                if(getAvailablePath(ax*50, ay*50, dx*50, dy*50, path)){
+                    return true;
+                };
+            }else{
+                //remove the last element from path
+                int lastIdx= path.size()-1;
+                path.remove(lastIdx);
+            } 
         }
+        return false;
     }
 
-    public PriorityQueue<Integer> getPath(int x, int y, int dx, int dy) {
-        PriorityQueue<Integer> path = new PriorityQueue<Integer>();
+    public ArrayList<Integer> getPath(int x, int y, int dx, int dy) {
+        ArrayList<Integer> path = new ArrayList<Integer>();
         getAvailablePath(x, y, dx, dy, path);
         return path;
     }

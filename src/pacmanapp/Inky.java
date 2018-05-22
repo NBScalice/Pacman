@@ -59,6 +59,8 @@ public class Inky implements movingSprites {
         counter++;
         this.x += sx;
         this.y += sy;
+          this.x %= 600;
+        this.y %= 600;
     }
 
     @Override

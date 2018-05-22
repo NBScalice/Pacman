@@ -21,7 +21,6 @@ public class Pinky implements Sprite {
         this.sx = sx;
         this.sy = sy;
         this.c = 0;
-        int k = 0;
     }
 
     public void setDirection(int sx, int sy) {

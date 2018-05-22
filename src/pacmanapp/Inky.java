@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Inky implements Sprite {
 
-    protected int x, y, sx, sy;
+    protected int x, y, sx, sy, c, dir;
     //protected int picIdx = 0;
     protected String pic = "inky.png";
 
@@ -22,6 +22,7 @@ public class Inky implements Sprite {
         this.y = y;
         this.sx = sx;
         this.sy = sy;
+        this.c = 0;
     }
 
     public void setDirection(int sx, int sy) {
@@ -45,14 +46,16 @@ public class Inky implements Sprite {
         int dy = p1.getY();
 
         //2. decide what is the right direction to go to pacman
-        /**
-         * Map map = Map.getInstance(); int dir = map.decideDirection(this.x,
-         * this.y, dx, dy);
-         */
+        if(c%100 == 0){
+            Map map = Map.getInstance(); 
+            dir = map.decideDirection(this.x,
+            this.y, dx, dy);
+        }
+        c++;
+         
         //3. update the x,y coordinates
         int[] arrSx = new int[]{1, 0, -1, 0};
         int[] arrSy = new int[]{0, -1, 0, 1};
-        int dir = 0; //actually above
         sx = arrSx[dir];
         sy = arrSy[dir];
 

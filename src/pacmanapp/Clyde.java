@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Clyde implements Sprite {
 
-    protected int x, y, sx, sy;
+    protected int x, y, sx, sy, c, dir;
     protected String pic = "Clyde.png";
     
     public Clyde(int x, int y, int sx, int sy) {
@@ -21,6 +21,7 @@ public class Clyde implements Sprite {
         this.y = y;
         this.sx = sx;
         this.sy = sy;
+        this.c = 0;
     }
     
     public void setDirection(int sx, int sy) {
@@ -43,6 +44,7 @@ public class Clyde implements Sprite {
         int dy = p1.getY();
 
         //2. pick a direction: to bottom left, or to pacman
+       if(c%100 == 0){
         Random random = new Random();
         int choice = random.nextInt(100);
         
@@ -54,7 +56,8 @@ public class Clyde implements Sprite {
             if (choice < 75) { dir = 1; }
             else { dir = 2; }
         }
-        
+       }
+        c++;
         
         //3. update the x,y coordinates
         int[] arrSx = new int[]{1, 0, -1, 0};

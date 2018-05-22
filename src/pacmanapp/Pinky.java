@@ -11,7 +11,7 @@ package pacmanapp;
  */
 public class Pinky implements Sprite {
 
-    protected int x, y, sx, sy;
+    protected int x, y, sx, sy, c, dir;
     //protected int picIdx = 0;
     protected String pic = "pinky.png";
 
@@ -20,6 +20,7 @@ public class Pinky implements Sprite {
         this.y = y;
         this.sx = sx;
         this.sy = sy;
+        this.c = 0;
     }
 
     public void setDirection(int sx, int sy) {

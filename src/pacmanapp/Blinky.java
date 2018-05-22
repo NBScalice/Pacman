@@ -11,7 +11,7 @@ package pacmanapp;
  */
 public class Blinky implements Sprite {
 
-    protected int x, y, sx, sy;
+    protected int x, y, sx, sy, dir, c;
     //protected int picIdx = 0;
     protected String pic = "blinky.png";
 
@@ -20,6 +20,7 @@ public class Blinky implements Sprite {
         this.y = y;
         this.sx = sx;
         this.sy = sy;
+        this.c = 0;
     }
 
     public void setDirection(int sx, int sy) {
@@ -43,10 +44,11 @@ public class Blinky implements Sprite {
         int dy = p1.getY();
 
         //2. decide what is the right direction to go to pacman
-        
-         Map map = Map.getInstance(); 
-         int dir = map.decideDirection(this.x,this.y, dx, dy);
-         
+        if(c%100 == 0){
+            Map map = Map.getInstance(); 
+            dir = map.decideDirection(this.x,this.y, dx, dy);
+        }
+        c++;
         //3. update the x,y coordinates
         int[] arrSx = new int[]{1, 0, -1, 0};
         int[] arrSy = new int[]{0, -1, 0, 1};

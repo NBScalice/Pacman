@@ -23,7 +23,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 
@@ -36,7 +39,7 @@ public class PacmanApp extends Application implements API {
     protected GraphicsContext gc;
     protected GameEngine ge;
     protected Hashtable<String, Image> map = new Hashtable<String, Image>();
-
+    protected Text text;
     class MyThread extends Thread {
 
         @Override
@@ -48,7 +51,7 @@ public class PacmanApp extends Application implements API {
                     Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ge.oneRound();
-                gc.fillText("Score: " + ge.getScore(), 900, 900, 100);
+                
             }
         }
     }
@@ -60,11 +63,14 @@ public class PacmanApp extends Application implements API {
         Canvas canvas = new Canvas(1000, 1000);
         this.gc = canvas.getGraphicsContext2D();
         gc.setFont(new Font("default", 20));
-
+        GridPane grid = new GridPane();
+        Pane pane = new Pane();
+        text = new Text("Score: 0");        
+        pane.getChildren().addAll(text);
         root.getChildren().add(canvas);
-        gc.fillText("Score: ", 900, 900, 100);
-
-        Scene sc = new Scene(root);
+        grid.add(text,0,0);
+        grid.add(root,1,0);
+        Scene sc = new Scene(grid);
         primaryStage.setScene(sc);
         primaryStage.show();
 
@@ -136,5 +142,7 @@ public class PacmanApp extends Application implements API {
     public void clear() {
         this.gc.clearRect(0, 0, 1000, 1000);
     }
-
+    public void updateScore(int score){
+        text.setText("Score: "+score);
+    }
 }

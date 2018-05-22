@@ -91,6 +91,7 @@ public class GameEngine {
             s.update();
             s.draw(this.api);
         }
+        api.updateScore(score);
         double du = timer.stop();
         System.out.println("Time taken: " + du + " milliseconds.");
     }

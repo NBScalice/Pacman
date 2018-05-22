@@ -120,16 +120,16 @@ public class GameEngine {
                     int y = 50 * row;
                     switch (arrCh[i]) {
                         case '#':
-                            sp = new wall(x, y);
-                            this.register(sp);
+                            //sp = new wall(x, y);
+                            //this.register(sp);
                             break;
                         case 'P':
-                            sp = new pacdot(x, y);
-                            this.register(sp);
+                           // sp = new wall(x, y);
+                           // this.register(sp);
                             break;
                         case '.':
-                            sp = new pacdot(x, y);
-                            this.register(sp);
+                            //sp = new pacdot(x, y);
+                            //this.register(sp);
                             break;
 
                     }
@@ -142,7 +142,7 @@ public class GameEngine {
         }
 
         //pacdot dot1 = new pacdot(80, 80);
-        Pacman man1 = new Pacman(150, 100, 1, 0);
+        Pacman man1 = new Pacman(150, 500, 0, 0);
         //Pacman man2 = new Pacman(300, 300, 0, 1);
 
         this.register(man1);

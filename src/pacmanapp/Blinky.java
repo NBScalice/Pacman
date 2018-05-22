@@ -46,6 +46,9 @@ public class Blinky implements movingSprites {
         
          Map map = Map.getInstance(); 
          int dir = map.decideDirection(this.x,this.y, dx, dy);
+         if(dir==-1){//don't do anything
+             return;
+         }
          
         //3. update the x,y coordinates
         int[] arrSx = new int[]{1, 0, -1, 0};

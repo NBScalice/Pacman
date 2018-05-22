@@ -19,7 +19,7 @@ public class Map {
     protected int[] arrSx = new int[]{1, 0, -1, 0};
     protected int[] arrSy = new int[]{0, -1, 0, 1}; //East,North,West,South
     protected static Map Instance;
-    boolean[][] wasHere = new boolean[1000][1000];
+    boolean[][] wasHere = new boolean[12][12];// = new boolean[1000][1000];
     //boolean[][] correctPath = new boolean[100][100];
     protected GameEngine ge;
     int startX, startY;
@@ -35,13 +35,16 @@ public class Map {
     }
 
     public int decideDirection(int x, int y, int dx, int dy) {
+        reset();
         PriorityQueue<Integer> path = new PriorityQueue<Integer>();
         getAvailablePath(x, y, dx, dy, path);
         if (path == null || path.size() == 0) {
             int bp = 1;
+            return -1;
+        } else {
+            int firstDir = path.peek();
+            return firstDir;
         }
-        int firstDir = path.peek();
-        return firstDir;
     }
 
     public Set<Integer> getAvailableDirection(int x, int y) {   //return a possible direction given a coordinate
@@ -53,25 +56,38 @@ public class Map {
             int dy = arrSy[dir];
             int fx = nx + dx;
             int fy = ny + dy;
-            if (fx >= 0 && fx < 100 && fy >= 0 && fy < 100 && map[fy][fx] != '#') {
+            if (fx >= 0 && fx < 12 && fy >= 0 && fy < 12 && map[fy][fx] != '#') {
                 Dir.add(dir);
             }
         }
         return Dir;
     }
 
+    public void reset() {
+        for (int a = 0; a < 12; a++) {
+            for (int b = 0; b < 12; b++) {
+                wasHere[a][b] = false;
+            }
+        }
+    }
+
     public void getAvailablePath(int x, int y, int dx, int dy, PriorityQueue<Integer> path) { // get a set of direction from map[y][x] to map[dy][dx]
         
+        x = x/50;
+        y = y/50;
+        dx = dx/50;
+        dy= dy/50;
+        System.out.println("x: " + x + ", y: " + y);
         wasHere[y][x] = true;
-        Set<Integer> Dir = getAvailableDirection(x, y);
+        Set<Integer> Dir = getAvailableDirection(x*50, y*50);
         for (int dir : Dir) {
-            int nx = (x / 50) + arrSx[dir];
-            int ny = (y / 50) + arrSy[dir];
-            int ax = nx * 50;
-            int ay = ny * 50;
+            int nx = x + arrSx[dir];
+            int ny = y + arrSy[dir];
+            int ax = nx;
+            int ay = ny;
             path.add(dir);
             if (ax != dx && ay != dy && wasHere[ay][ax] != true) {
-                getAvailablePath(ax, ay, dx, dy, path);
+                getAvailablePath(ax*50, ay*50, dx*50, dy*50, path);
             } else {
                 return;
             }
@@ -134,5 +150,4 @@ public class Map {
         }
         return false;
     }*/
-
 }

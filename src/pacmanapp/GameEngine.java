@@ -22,6 +22,7 @@ public class GameEngine {
 
     protected Pacman playerPacman;
     //protected pacdot dot; 
+    protected Clyde clyde;
     protected Inky inky;
     protected Blinky blinky;
     protected Pinky pinky;
@@ -123,7 +124,7 @@ public class GameEngine {
                             this.register(sp);
                             break;
                         case 'P':
-                            sp = new Pacman(x, y, 1, 0);
+                            sp = new pacdot(x, y);
                             this.register(sp);
                             break;
                         case '.':
@@ -142,29 +143,32 @@ public class GameEngine {
 
         //pacdot dot1 = new pacdot(80, 80);
         Pacman man1 = new Pacman(100, 100, 1, 0);
-        Pacman man2 = new Pacman(300, 300, 0, 1);
+        //Pacman man2 = new Pacman(300, 300, 0, 1);
 
         this.register(man1);
-        this.register(man2);
+        //this.register(man2);
         this.playerPacman = man1;
 
         Blinky b = new Blinky(200, 200, 1, 0);
         this.register(b);
         this.blinky = b;
+        
+        Clyde c = new Clyde(300, 300, 1, 0);
+        this.register(c);
+        this.clyde = c;
 
         Pinky p = new Pinky(200, 300, 1, 0);
         this.register(p);
         this.pinky = p;
-        
-        Inky I = new Inky(200,100,1,0);
+
+        Inky I = new Inky(200, 100, 1, 0);
         this.register(I);
         this.inky = I;
-        
+
         ScoreBoard sb = new ScoreBoard(this);
         this.register(sb);
         this.scoreboard = sb;
-        
-        
+
         Map map = new Map(map1);
     }
 
@@ -229,19 +233,19 @@ public class GameEngine {
             //add all the pacdot to to delete 
             if (sprite2 instanceof pacdot) {
                 toDel.add(sprite2);
-            }else if (sprite2 instanceof wall){
-                ((Pacman)sprite1).setDirection(0, 0);
-            }else{
+            } else if (sprite2 instanceof wall) {
+                //((Pacman) sprite1).setDirection(0, 0);
+            } else {
                 toDel.add(sprite1);
             }
         }//checking pacman packdot
         else if (!(sprite1 instanceof Pacman) && sprite2 instanceof Pacman) {
-            if (sprite1 instanceof pacdot){
+            if (sprite1 instanceof pacdot) {
                 toDel.add(sprite1);
                 score++;
-            }else if (sprite1 instanceof wall){
-                ((Pacman)sprite2).setDirection(0, 0);
-            }else{
+            } else if (sprite1 instanceof wall) {
+               // ((Pacman) sprite2).setDirection(0, 0);
+            } else {
                 toDel.add(sprite2);
             }
         }//checking pacdot pacman
@@ -249,8 +253,9 @@ public class GameEngine {
             return;//coz two pacdots
         }
     }
-    
-    public int getScore() { return score; }
 
-    
+    public int getScore() {
+        return score;
+    }
+
 }

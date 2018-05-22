@@ -41,20 +41,18 @@ public class PacmanApp extends Application implements API {
 
         @Override
         public void run() {
-            while (true) { 
+            while (true) {
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ge.oneRound();
-                gc.fillText("Score: "+ge.getScore(), 900, 900,100);
+                gc.fillText("Score: " + ge.getScore(), 900, 900, 100);
             }
         }
     }
-    
-    
-    
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Pacman");
@@ -62,9 +60,9 @@ public class PacmanApp extends Application implements API {
         Canvas canvas = new Canvas(1000, 1000);
         this.gc = canvas.getGraphicsContext2D();
         gc.setFont(new Font("default", 20));
-        
+
         root.getChildren().add(canvas);
-        gc.fillText("Score: ", 900, 900,100);
+        gc.fillText("Score: ", 900, 900, 100);
 
         Scene sc = new Scene(root);
         primaryStage.setScene(sc);
@@ -131,7 +129,7 @@ public class PacmanApp extends Application implements API {
                 Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }
 
     @Override
